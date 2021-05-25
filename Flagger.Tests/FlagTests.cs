@@ -96,5 +96,20 @@ namespace Flagger.Tests
 			
 			Assert.AreEqual(2, flagCollection.NextFreePosition);
 		}
+
+		[Test]
+		public void GetTest()
+		{
+			var flagCollection = new FlagCollection
+			{
+				Flags            = {{'h', 0}, {'g', 1}, {'v', 2}},
+				FlagValues       = {0b10100000},
+				NextFreePosition = 3
+			};
+			
+			Assert.IsTrue(flagCollection.GetFlag('h'));
+			Assert.IsTrue(flagCollection.GetFlag('v'));
+			Assert.IsFalse(flagCollection.GetFlag('g'));
+		}
 	}
 }

@@ -45,18 +45,18 @@ namespace Flagger
 
 		public bool Contains(char flag) => Flags.ContainsKey(flag);
 		public bool GetFlag(char  flag) => GetFlag(Flags[flag]);
-		
-		public bool GetFlag(int index)
+
+		private bool GetFlag(int index)
 		{
 			var byteIndex = index / 8;
 			var bitIndex  = index % 8;
 			var b         = FlagValues[byteIndex];
-			var bit       = 1 << bitIndex;
+			var bit       = 1 << (7 -bitIndex);
 			var masked    = b & (byte) bit;
 			return masked != 0;
 		}
 
-		public void SetFlag(int index, bool value)
+		private void SetFlag(int index, bool value)
 		{
 			var byteIndex = index / 8;
 			var bitIndex  = index % 8;
