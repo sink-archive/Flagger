@@ -85,5 +85,8 @@ namespace Flagger
 			
 			NextFreePosition++;
 		}
+
+		public Dictionary<char, int> GetFlagIndexTable() => Flags;
+		public byte[]                GetFlagBytes()      => FlagValues.ToArray();
 	}
 }
